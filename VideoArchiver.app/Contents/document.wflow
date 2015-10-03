@@ -1,0 +1,693 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AMApplicationBuild</key>
+	<string>417</string>
+	<key>AMApplicationVersion</key>
+	<string>2.6</string>
+	<key>AMDocumentVersion</key>
+	<string>2</string>
+	<key>actions</key>
+	<array>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.applescript.object</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run AppleScript.action</string>
+				<key>ActionName</key>
+				<string>Run AppleScript</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>source</key>
+					<string>tell application "Photos"	--activate	set imageSel to (get selection)	if (imageSel is {}) then		error "Please select at least one image."	else		repeat with i from 1 to count of imageSel			set next_image to item i of imageSel			set offsetc1 to ((offset of "," in (name of next_image as string)))			set offseta1 to ((offset of "'" in (name of next_image as string)))			set offsetam to ((offset of " AM" in (name of next_image as string)))			set offsetpm to ((offset of " PM" in (name of next_image as string)))			if (offsetc1 is 0 and offseta1 is 0 and (offsetam is 0 or offsetpm is 0)) then				--get date and change format to m,d,yy				set capture_date to (date of next_image)				set short_capture_date_string to the short date string of capture_date				set prevTIDs to text item delimiters of AppleScript				set text item delimiters of AppleScript to "/"				set short_capture_date_string to text items of short_capture_date_string				set text item delimiters of AppleScript to ","				set short_capture_date_string to "" &amp; short_capture_date_string				set text item delimiters of AppleScript to prevTIDs								--get time and change format to h'm's am				set capture_time_string to the time string of capture_date				set prevTIDs to text item delimiters of AppleScript				set text item delimiters of AppleScript to ":"				set capture_time_string to text items of capture_time_string				set text item delimiters of AppleScript to "'"				set capture_time_string to "" &amp; capture_time_string				set text item delimiters of AppleScript to "AM"				set capture_time_string to text items of capture_time_string				set text item delimiters of AppleScript to "AM "				set capture_time_string to "" &amp; capture_time_string				set text item delimiters of AppleScript to "PM"				set capture_time_string to text items of capture_time_string				set text item delimiters of AppleScript to "PM "				set capture_time_string to "" &amp; capture_time_string				set text item delimiters of AppleScript to prevTIDs								set prev_name to (filename of next_image)				set prevTIDs to text item delimiters of AppleScript				set text item delimiters of AppleScript to ".MOV"				set prev_name to text items of prev_name				set text item delimiters of AppleScript to ""				set prev_name to "" &amp; prev_name				set text item delimiters of AppleScript to prevTIDs								--new filename will be date, time, old filename				set new_title to short_capture_date_string &amp; " " &amp; capture_time_string &amp; prev_name				tell next_image					set the name of next_image to (the new_title as text)				end tell			end if		end repeat	end ifend tell</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.RunScript</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunScriptAction</string>
+				<key>InputUUID</key>
+				<string>8B002860-0505-40BA-95B5-D755E8583580</string>
+				<key>Keywords</key>
+				<array>
+					<string>Run</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>9D1D1F90-B6C6-4C53-A31D-9B16C7A7F7E3</string>
+				<key>UUID</key>
+				<string>02CDCBDB-6DCF-48C1-B998-7FCE98553939</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string>on run {input, parameters}
+	
+	(* Your script goes here *)
+	
+	return input
+end run</string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>387.750000:316.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array/>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.0.2</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>dialogMessage</key>
+					<dict/>
+					<key>timeoutValue</key>
+					<dict/>
+					<key>useTimeout</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array/>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Wait for User Action.action</string>
+				<key>ActionName</key>
+				<string>Wait for User Action</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>dialogMessage</key>
+					<string>Export videos at 1080p quality to an empty folder, then press continue.</string>
+					<key>timeoutValue</key>
+					<integer>5</integer>
+					<key>useTimeout</key>
+					<false/>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.FloatingDialog</string>
+				<key>CFBundleVersion</key>
+				<string>1.0.2</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<true/>
+				<key>CanShowWhenRun</key>
+				<false/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>AMWait_For_User_Action</string>
+				<key>InputUUID</key>
+				<string>054D1015-70F2-4E98-B3BD-7D7FE98286F1</string>
+				<key>Keywords</key>
+				<array>
+					<string>Prompt</string>
+					<string>Wait</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>D880CACC-A38E-46A3-A822-EC900B1E2BF6</string>
+				<key>UUID</key>
+				<string>511F643C-D2A3-481A-AE5D-527DDEF14BC5</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<string>Perform an action, then click “Continue” to proceed.</string>
+						<key>name</key>
+						<string>dialogMessage</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+					<key>1</key>
+					<dict>
+						<key>default value</key>
+						<true/>
+						<key>name</key>
+						<string>useTimeout</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>1</string>
+					</dict>
+					<key>2</key>
+					<dict>
+						<key>default value</key>
+						<integer>1</integer>
+						<key>name</key>
+						<string>timeoutValue</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>2</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>387.750000:485.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Wait for User Action.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>1.2.1</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Finder</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>defaultLocation</key>
+					<dict>
+						<key>isPathPopUp</key>
+						<true/>
+						<key>variableUUIDsInMenu</key>
+						<array/>
+					</dict>
+					<key>granularity</key>
+					<dict/>
+					<key>multipleSelection</key>
+					<dict/>
+					<key>promptMessage</key>
+					<dict>
+						<key>tokenizedValue</key>
+						<array>
+							<string>Choose the folder you exported your videos to:</string>
+						</array>
+					</dict>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.path</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Ask for Finder Items.action</string>
+				<key>ActionName</key>
+				<string>Ask for Finder Items</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>defaultLocation</key>
+					<string>~/Desktop</string>
+					<key>granularity</key>
+					<integer>1</integer>
+					<key>multipleSelection</key>
+					<false/>
+					<key>promptMessage</key>
+					<string>Choose the folder you exported your videos to:</string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.Automator.AskForFinderItems</string>
+				<key>CFBundleVersion</key>
+				<string>1.2.1</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<true/>
+				<key>CanShowWhenRun</key>
+				<false/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryFilesAndFolders</string>
+				</array>
+				<key>Class Name</key>
+				<string>AMAskForFinderItemsAction</string>
+				<key>InputUUID</key>
+				<string>6F3358F9-BA9E-4164-9145-67596A572507</string>
+				<key>Keywords</key>
+				<array>
+					<string>Find</string>
+					<string>Item</string>
+					<string>File</string>
+					<string>Folder</string>
+					<string>Ask</string>
+					<string>Choose</string>
+					<string>Prompt</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>16C5C672-B1BE-44B2-8197-D4854345FBB8</string>
+				<key>UUID</key>
+				<string>AC75A891-A4C5-4BBC-ABA1-4B5F86D62413</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Finder</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<false/>
+						<key>name</key>
+						<string>multipleSelection</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+					<key>1</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>granularity</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>1</string>
+					</dict>
+					<key>2</key>
+					<dict>
+						<key>default value</key>
+						<string>~/Desktop</string>
+						<key>name</key>
+						<string>defaultLocation</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>2</string>
+					</dict>
+					<key>3</key>
+					<dict>
+						<key>default value</key>
+						<string>Choose a Finder Item:</string>
+						<key>name</key>
+						<string>promptMessage</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>3</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>387.750000:821.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Ask for Finder Items.action/Contents/Resources/Base.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+		<dict>
+			<key>action</key>
+			<dict>
+				<key>AMAccepts</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Optional</key>
+					<true/>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.string</string>
+					</array>
+				</dict>
+				<key>AMActionVersion</key>
+				<string>2.0.3</string>
+				<key>AMApplication</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>AMParameterProperties</key>
+				<dict>
+					<key>COMMAND_STRING</key>
+					<dict/>
+					<key>CheckedForUserDefaultShell</key>
+					<dict/>
+					<key>inputMethod</key>
+					<dict/>
+					<key>shell</key>
+					<dict/>
+					<key>source</key>
+					<dict/>
+				</dict>
+				<key>AMProvides</key>
+				<dict>
+					<key>Container</key>
+					<string>List</string>
+					<key>Types</key>
+					<array>
+						<string>com.apple.cocoa.string</string>
+					</array>
+				</dict>
+				<key>ActionBundlePath</key>
+				<string>/System/Library/Automator/Run Shell Script.action</string>
+				<key>ActionName</key>
+				<string>Run Shell Script</string>
+				<key>ActionParameters</key>
+				<dict>
+					<key>COMMAND_STRING</key>
+					<string>#!/bin/bash
+encodeVideo () 
+{
+    # $1 is input file
+    # $2 is output file, should end with .m4v
+    # $3 is the width of the output
+    # https://trac.handbrake.fr/wiki/CLIGuide
+    width=$3  #height will be scaled to preserve aspect ratio
+    audioBitrate=128 #AAC kbps
+    constantQualityRF=22 #https://trac.handbrake.fr/wiki/ConstantQuality  22 looks good for iPhone
+    start="started at `date`"
+    # advanced options from HandBrake preset
+    x264Advanced="level=4.0:ref=9:bframes=8:b-adapt=2:direct=auto:analyse=all:8x8dct=0:me=umh:merange=24:subme=10:trellis=2:vbv-bufsize=25000:vbv-maxrate=20000:rc-lookahead=60"
+    # rotate, 1 flips on x, 2 flips on y, 3 flips on both (equivalent of 180 degree rotation)
+    echo $3
+    echo $width
+    /usr/local/bin/HandBrakeCLI -i "${1}" -o "${2}" -e x264 -O -B $audioBitrate -q $constantQualityRF -w $width -x $x264Advanced
+    #echo $start
+    #echo "finished at " `date`
+}
+
+isLandscape()
+{
+    #returns true if video is landscape, false if it is portrait
+    width=`mdls -name kMDItemPixelWidth "$1" | grep -o '\d\{3,\}'`
+    height=`mdls -name kMDItemPixelHeight "$1" | grep -o '\d\{3,\}'`
+    #echo "$width x $height"
+    #if test $width -gt $height
+    if [ $width -gt $height ]
+    then
+        echo "true"
+    fi
+}
+
+
+sourceDir="$1"
+targetDir="$1/encoded"
+echo "User specified directory is $sourceDir"
+
+
+mkdir "$targetDir"
+
+cd "$sourceDir"
+
+echo "files for loop"
+echo `ls -1 *.*`
+
+#ls -1 "*.*" | while read -r f; do
+#!/bin/bash
+SAVEIFS=$IFS
+IFS=$(echo -en "\n\b")
+for f in *.*
+do
+    echo "in loop with filename: $f"
+    regex="^[^ ]+ [^ ]+ [^ ]+"
+    datetime=`echo $f | sed -E 's|'${sourceDir}'||' | grep -Eo "^[^ ]+ [^ ]+ [^ ]+" | tr "," "/" | tr "'" ":"`
+    newFileName=`echo $f | sed -E "s/$regex //"`
+
+    #rename the file to drop the ugly timestamp from the filename
+    mv "${f}" "${newFileName}"
+
+    echo "looking at file ${newFileName} with datetime $datetime"
+
+    #detect orientation and encode with proper width
+    if [ "`isLandscape "${newFileName}"`" = "true" ]; then
+        encodeVideo "${newFileName}" "${targetDir}/${newFileName}" 1280
+    else
+        encodeVideo "${newFileName}" "${targetDir}/${newFileName}" 720
+    fi
+
+    #change the created date on the newly encoded file to match the original
+    SetFile -d "$datetime" "${targetDir}/${newFileName}"
+done
+IFS=$SAVEIFS</string>
+					<key>CheckedForUserDefaultShell</key>
+					<true/>
+					<key>inputMethod</key>
+					<integer>1</integer>
+					<key>shell</key>
+					<string>/bin/bash</string>
+					<key>source</key>
+					<string></string>
+				</dict>
+				<key>BundleIdentifier</key>
+				<string>com.apple.RunShellScript</string>
+				<key>CFBundleVersion</key>
+				<string>2.0.3</string>
+				<key>CanShowSelectedItemsWhenRun</key>
+				<false/>
+				<key>CanShowWhenRun</key>
+				<true/>
+				<key>Category</key>
+				<array>
+					<string>AMCategoryUtilities</string>
+				</array>
+				<key>Class Name</key>
+				<string>RunShellScriptAction</string>
+				<key>IgnoresInput</key>
+				<false/>
+				<key>InputUUID</key>
+				<string>E52D4A12-5343-49B5-B4A6-5FB4F95F8CFA</string>
+				<key>Keywords</key>
+				<array>
+					<string>Shell</string>
+					<string>Script</string>
+					<string>Command</string>
+					<string>Run</string>
+					<string>Unix</string>
+				</array>
+				<key>OutputUUID</key>
+				<string>56083935-8F71-46C3-B0CE-90AAA01EAD1C</string>
+				<key>UUID</key>
+				<string>E34D4B34-93FA-42E2-8275-2666633F8E4F</string>
+				<key>UnlocalizedApplications</key>
+				<array>
+					<string>Automator</string>
+				</array>
+				<key>arguments</key>
+				<dict>
+					<key>0</key>
+					<dict>
+						<key>default value</key>
+						<integer>0</integer>
+						<key>name</key>
+						<string>inputMethod</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>0</string>
+					</dict>
+					<key>1</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>source</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>1</string>
+					</dict>
+					<key>2</key>
+					<dict>
+						<key>default value</key>
+						<false/>
+						<key>name</key>
+						<string>CheckedForUserDefaultShell</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>2</string>
+					</dict>
+					<key>3</key>
+					<dict>
+						<key>default value</key>
+						<string></string>
+						<key>name</key>
+						<string>COMMAND_STRING</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>3</string>
+					</dict>
+					<key>4</key>
+					<dict>
+						<key>default value</key>
+						<string>/bin/sh</string>
+						<key>name</key>
+						<string>shell</string>
+						<key>required</key>
+						<string>0</string>
+						<key>type</key>
+						<string>0</string>
+						<key>uuid</key>
+						<string>4</string>
+					</dict>
+				</dict>
+				<key>isViewVisible</key>
+				<true/>
+				<key>location</key>
+				<string>387.750000:1184.000000</string>
+				<key>nibPath</key>
+				<string>/System/Library/Automator/Run Shell Script.action/Contents/Resources/English.lproj/main.nib</string>
+			</dict>
+			<key>isViewVisible</key>
+			<true/>
+		</dict>
+	</array>
+	<key>connectors</key>
+	<dict>
+		<key>327C51F7-2949-4A2F-8D73-C2F119734412</key>
+		<dict>
+			<key>from</key>
+			<string>511F643C-D2A3-481A-AE5D-527DDEF14BC5 - 511F643C-D2A3-481A-AE5D-527DDEF14BC5</string>
+			<key>to</key>
+			<string>AC75A891-A4C5-4BBC-ABA1-4B5F86D62413 - AC75A891-A4C5-4BBC-ABA1-4B5F86D62413</string>
+		</dict>
+		<key>8B30ACA2-7718-423B-B30D-1E6EA3869F64</key>
+		<dict>
+			<key>from</key>
+			<string>02CDCBDB-6DCF-48C1-B998-7FCE98553939 - 02CDCBDB-6DCF-48C1-B998-7FCE98553939</string>
+			<key>to</key>
+			<string>511F643C-D2A3-481A-AE5D-527DDEF14BC5 - 511F643C-D2A3-481A-AE5D-527DDEF14BC5</string>
+		</dict>
+		<key>D365D912-5F51-4484-A0E2-8BC77EB72164</key>
+		<dict>
+			<key>from</key>
+			<string>AC75A891-A4C5-4BBC-ABA1-4B5F86D62413 - AC75A891-A4C5-4BBC-ABA1-4B5F86D62413</string>
+			<key>to</key>
+			<string>E34D4B34-93FA-42E2-8275-2666633F8E4F - E34D4B34-93FA-42E2-8275-2666633F8E4F</string>
+		</dict>
+	</dict>
+	<key>variables</key>
+	<array>
+		<dict>
+			<key>UUID</key>
+			<string>45129E6E-0E9F-4FA0-9343-18217DA11001</string>
+			<key>identifier</key>
+			<string>com.apple.Automator.Variable.Storage</string>
+			<key>name</key>
+			<string>Storage</string>
+		</dict>
+	</array>
+	<key>workflowMetaData</key>
+	<dict>
+		<key>workflowTypeIdentifier</key>
+		<string>com.apple.Automator.application</string>
+	</dict>
+</dict>
+</plist>
